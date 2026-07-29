@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="stock-page">
+
+    <div class="stock-header">
+
+        <div>
+            <h1>📦 Stock Management</h1>
+            <p>Manage and monitor available stock.</p>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Search Product..." class="stock-search">
+        </div>
+
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="stock-cards">
+
+        <div class="stock-card blue">
+            <h3>Total Products</h3>
+            <h2>{{ total }}</h2>
+        </div>
+
+        <div class="stock-card green">
+            <h3>Available Stock</h3>
+            <h2>{{ available }}</h2>
+        </div>
+
+        <div class="stock-card orange">
+            <h3>Low Stock</h3>
+            <h2>{{ low }}</h2>
+        </div>
+
+        <div class="stock-card red">
+            <h3>Out of Stock</h3>
+            <h2>{{ out }}</h2>
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="stock-table">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Available</th>
+                    <th>Minimum</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for item in products %}
+
+            <tr>
+
+                <td>{{ item.product_name }}</td>
+
+                <td>{{ item.category }}</td>
+
+                <td>{{ item.quantity }}</td>
+
+                <td>{{ item.minimum_stock }}</td>
+
+                <td>
+
+                    {% if item.quantity == 0 %}
+                        <span class="status out">Out</span>
+
+                    {% elif item.quantity <= item.minimum_stock %}
+                        <span class="status low">Low</span>
+
+                    {% else %}
+                        <span class="status good">Good</span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<h2>Ongeza Bidhaa Mpya</h2>
+
+
+<form method="POST">
+
+
+<label>Jina la Bidhaa</label>
+
+<input type="text" name="product_name" required>
+
+
+
+<label>Category</label>
+
+<input type="text" name="category">
+
+
+
+<label>Brand</label>
+
+<input type="text" name="brand">
+
+
+
+<label>Bei ya Kununua</label>
+
+<input type="number" name="buying_price" required>
+
+
+
+<label>Bei ya Kuuza</label>
+
+<input type="number" name="selling_price" required>
+
+
+
+<label>Stok</label>
+
+<input type="number" name="quantity" required>
+
+
+
+<label>Minimum Stock</label>
+
+<input type="number" name="minimum_stock" value="5">
+
+
+
+<button type="submit">
+Hifadhi Bidhaa
+</button>
+
+
+</form>
+
+
+{% endblock %}

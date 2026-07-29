@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="sales-page">
+
+    <div class="sales-title">
+        <h1>💰 Sales (POS)</h1>
+        <p>Create new sale and manage customer purchases.</p>
+    </div>
+
+    <div class="sales-grid">
+
+        <!-- LEFT PANEL -->
+        <div class="sales-left">
+
+            <h2>Select Product</h2>
+
+            <label>Product</label>
+
+            <select>
+                <option>-- Select Product --</option>
+                <option>Tyre</option>
+                <option>Chain</option>
+                <option>Spark Plug</option>
+            </select>
+
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                placeholder="Enter quantity">
+
+            <button class="cart-btn">
+                <i class="fas fa-cart-plus"></i>
+                Add To Cart
+            </button>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="sales-right">
+
+            <h2>Current Sale</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Qty</th>
+
+                        <th>Total</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td colspan="3" style="text-align:center;color:gray;padding:50px;">
+
+                            No products added
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="sale-total">
+
+                <h2>Total : <span>TSh 0</span></h2>
+
+                <button class="complete-btn">
+
+                    <i class="fas fa-check-circle"></i>
+
+                    Complete Sale
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

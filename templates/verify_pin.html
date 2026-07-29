@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="profile-card">
+
+<h1>🔒 Security Verification</h1>
+
+<p>Enter Admin PIN to continue.</p>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+
+<input
+type="password"
+name="pin"
+maxlength="4"
+placeholder="Enter PIN"
+required>
+
+<br><br>
+
+<button class="logout-profile">
+
+Verify
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>🛒 Purchases</h1>
+
+<div class="form-box">
+
+<form method="POST">
+
+<label>Supplier Name</label>
+<input type="text" name="supplier">
+
+<label>Product</label>
+
+<select name="product_id">
+
+{% for p in products %}
+<option value="{{ p.id }}">
+{{ p.product_name }}
+</option>
+{% endfor %}
+
+</select>
+
+<label>Quantity</label>
+<input type="number" name="quantity">
+
+<label>Buying Price</label>
+<input type="number" name="price">
+
+<label>Purchase Date</label>
+<input type="date" name="date">
+
+<button class="save-btn">
+💾 Save Purchase
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

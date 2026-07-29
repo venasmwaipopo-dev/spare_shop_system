@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+VENAS J. MWAIPOPO Spare Shop System
+</title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<body>
+
+
+
+<div class="container">
+
+
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h2>🏍 VENAS J.</h2>
+
+        <p>MWAIPOPO</p>
+
+        <small>Spare Shop System</small>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/products">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/purchases">
+                <i class="fas fa-cart-shopping"></i>
+                <span>Purchases</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/sales">
+                <i class="fas fa-cash-register"></i>
+                <span>Sales</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/stock">
+                <i class="fas fa-warehouse"></i>
+                <span>Stock</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/reports">
+                <i class="fas fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/settings">
+                <i class="fas fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+<!-- ================= MAIN ================= -->
+
+
+<div class="main">
+
+
+
+
+
+<!-- ================= TOPBAR ================= -->
+
+
+<div class="topbar">
+
+
+
+<div class="page-title">
+
+
+{{ title }}
+
+
+</div>
+
+
+
+
+
+
+<!-- PROFILE RIGHT -->
+
+
+<a href="/profile" class="profile-box">
+
+
+
+<img src="{{ url_for('static', filename='uploads/profile.jpg') }}">
+
+
+
+
+
+<div>
+
+
+<h4>
+
+VENAS J. MWAIPOPO
+
+</h4>
+
+
+<small>
+
+Owner
+
+</small>
+
+
+</div>
+
+
+
+
+<i class="fas fa-chevron-down"></i>
+
+
+
+</a>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- ================= CENTER WINDOW ================= -->
+
+
+<div class="content-window">
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+
+
+</html>

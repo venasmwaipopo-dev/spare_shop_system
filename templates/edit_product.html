@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<h2>Edit Bidhaa</h2>
+
+
+<form method="POST">
+
+
+<input 
+name="product_name"
+value="{{product.product_name}}"
+>
+
+
+<input 
+name="category"
+value="{{product.category}}"
+>
+
+
+<input 
+name="brand"
+value="{{product.brand}}"
+>
+
+
+<input 
+name="buying_price"
+value="{{product.buying_price}}"
+>
+
+
+<input 
+name="selling_price"
+value="{{product.selling_price}}"
+>
+
+
+<input 
+name="quantity"
+value="{{product.quantity}}"
+>
+
+
+<button>
+Hifadhi Mabadiliko
+</button>
+
+
+</form>
+
+
+{% endblock %}

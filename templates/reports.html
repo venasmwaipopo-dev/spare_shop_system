@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>📊 Reports Dashboard</h1>
+
+<div class="report-cards">
+
+    <div class="report-card blue">
+        <h3>Total Sales</h3>
+        <h2>TSh {{ total_sales }}</h2>
+    </div>
+
+    <div class="report-card green">
+        <h3>Total Profit</h3>
+        <h2>TSh {{ total_profit }}</h2>
+    </div>
+
+    <div class="report-card orange">
+        <h3>Purchases</h3>
+        <h2>{{ purchases }}</h2>
+    </div>
+
+    <div class="report-card red">
+        <h3>Products</h3>
+        <h2>{{ products }}</h2>
+    </div>
+
+</div>
+
+<div class="report-table">
+
+<h2>Sales Report</h2>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Product</th>
+<th>Qty</th>
+<th>Total</th>
+<th>Profit</th>
+</tr>
+
+<tr>
+<td colspan="5" style="text-align:center;">
+No sales available
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="report-table">
+
+<h2>Low Stock Products</h2>
+
+<table>
+
+<tr>
+<th>Product</th>
+<th>Current Stock</th>
+<th>Minimum Stock</th>
+<th>Status</th>
+</tr>
+
+{% for p in low_products %}
+
+<tr>
+
+<td>{{ p.product_name }}</td>
+
+<td>{{ p.quantity }}</td>
+
+<td>{{ p.minimum_stock }}</td>
+
+<td style="color:red;">
+Low Stock
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

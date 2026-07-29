@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<div class="hero-box">
+
+
+    <div class="hero-text">
+
+
+        <h1>
+            🏍 VENAS J. MWAIPOPO
+        </h1>
+
+
+        <h2>
+            Spare Shop Management System
+        </h2>
+
+
+        <p>
+            Karibu kwenye mfumo wa kisasa wa kusimamia
+            biashara ya spare za pikipiki, mauzo,
+            stock, faida na ripoti zako zote sehemu moja.
+        </p>
+
+
+
+        <div class="hero-buttons">
+
+
+            <button>
+
+                <i class="fas fa-plus"></i>
+                Ongeza Bidhaa
+
+            </button>
+
+
+
+            <button class="report-btn">
+
+                <i class="fas fa-chart-line"></i>
+                Angalia Ripoti
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="bike-icon">
+
+        🏍️
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}
+<div class="chart-box">
+
+    <h2>📈 Weekly Sales</h2>
+
+    <canvas id="salesChart"></canvas>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('salesChart');
+
+new Chart(ctx, {
+
+type:'line',
+
+data:{
+
+labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+
+datasets:[{
+
+label:'Sales (TSh)',
+
+data:[12000,18000,25000,15000,32000,28000,40000],
+
+borderColor:'#2563eb',
+
+backgroundColor:'rgba(37,99,235,.2)',
+
+fill:true,
+
+tension:.4
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+legend:{
+display:true
+}
+}
+
+}
+
+});
+
+</script>

@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+<div class="profile-page">
+
+
+<div class="profile-card">
+
+
+<img src="{{ url_for('static', filename='uploads/profile.jpg') }}">
+
+
+
+<h1>
+{{ user['fullname'] }}
+</h1>
+
+
+<h3>
+Owner
+</h3>
+
+
+
+<div class="profile-info">
+
+
+<p>
+<i class="fas fa-envelope"></i>
+Email:
+{{ user['email'] or 'Hakuna' }}
+</p>
+
+
+<p>
+<i class="fas fa-phone"></i>
+Simu:
+{{ user['phone'] or 'Hakuna' }}
+</p>
+
+
+<p>
+<i class="fas fa-store"></i>
+Biashara:
+Spare Shop System
+</p>
+
+
+</div>
+
+
+
+<br>
+
+
+<a href="/edit_profile" class="logout-profile">
+
+<i class="fas fa-edit"></i>
+Edit Profile
+
+</a>
+
+
+
+<form action="/upload_profile" method="POST" enctype="multipart/form-data">
+
+
+<br>
+
+
+<input type="file" name="image">
+
+
+<br><br>
+
+
+<button class="logout-btn">
+
+Upload Picha
+
+</button>
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}
