@@ -19,8 +19,8 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 
-app.config['MAIL_USERNAME'] = 'venasmwaipopo@gmail.com'
-app.config['MAIL_PASSWORD'] = 'xprm nxvp igdb esuu'
+app.config['MAIL_USERNAME'] = os.environ.get('venasmwaipopo@gmail.com')
+app.config['MAIL_PASSWORD'] = os.environ.get('xprm nxvp igdb esuu')
 
 mail = Mail(app)
 
@@ -756,13 +756,15 @@ def verify_add_product():
     return render_template("verify_pin.html")
 
 #================= FORGOT PASSWORD =================
-@app.route("/forgot_password", methods=["GET","POST"])
+from flask import flash
+import traceback
+
+@app.route("/forgot_password", methods=["GET", "POST"])
 def forgot_password():
 
     if request.method == "POST":
 
         email = request.form["email"]
-
 
         conn = get_db()
 
@@ -773,26 +775,28 @@ def forgot_password():
 
         conn.close()
 
+        if not user:
+            return render_template(
+                "forgot_password.html",
+                error="Email address not found"
+            )
 
-        if user:
+        import random
 
-            import random
+        otp = str(random.randint(100000, 999999))
 
-            otp = str(random.randint(100000,999999))
+        session["otp"] = otp
+        session["reset_email"] = email
 
-            session["otp"] = otp
-            session["reset_email"] = email
-
-
+        try:
             msg = Message(
-                "VENAS Spare Shop Password Reset OTP",
-                sender="venasmwaipopo@gmail.com",
+                subject="VENAS Spare Shop Password Reset OTP",
+                sender=app.config["MAIL_USERNAME"],
                 recipients=[email]
             )
 
-
             msg.body = f"""
-Hello {user['fullname']}
+Hello {user['fullname']},
 
 Your OTP code is:
 
@@ -800,27 +804,20 @@ Your OTP code is:
 
 Use this code to reset your password.
 
-VENAS J. MWAIPOPO
-Spare Shop System
+VENAS Spare Shop System
 """
-
 
             mail.send(msg)
 
-
             return redirect("/verify_otp")
 
+        except Exception as e:
+            print("EMAIL ERROR:")
+            traceback.print_exc()
 
-        else:
-
-            return render_template(
-                "forgot_password.html",
-                error="Email address not found"
-            )
-
+            return f"<h2>Email Error</h2><pre>{e}</pre>"
 
     return render_template("forgot_password.html")
-    
 #================= VERIFY OTP =================    
 @app.route("/verify_otp", methods=["GET","POST"])
 def verify_otp():
