@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>⚙️ Settings</h2>
+
+    <div class="settings-grid">
+
+        <a href="/edit_profile" class="setting-card">
+            <i class="fas fa-user-edit"></i>
+            <h4>Edit Profile</h4>
+        </a>
+
+        <a href="/change_password" class="setting-card">
+            <i class="fas fa-lock"></i>
+            <h4>Change Password</h4>
+        </a>
+
+        <a href="/change_pin" class="setting-card">
+            <i class="fas fa-key"></i>
+            <h4>Change PIN</h4>
+        </a>
+
+        <a href="/backup" class="setting-card">
+            <i class="fas fa-database"></i>
+            <h4>Backup Database</h4>
+        </a>
+
+        <a href="/restore" class="setting-card">
+            <i class="fas fa-upload"></i>
+            <h4>Restore Database</h4>
+        </a>
+
+        <a href="/logout" class="setting-card">
+            <i class="fas fa-sign-out-alt"></i>
+            <h4>Logout</h4>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
