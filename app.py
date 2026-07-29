@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, session
 import sqlite3
 import random
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
 otp = random.randint(100000,999999)
 
 app = Flask(__name__)
@@ -15,13 +16,15 @@ app.secret_key = "spare_shop_secret_key"
 from flask_mail import Mail, Message
 
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
+app.config['MAIL_SERVER'] =os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
 app.config['MAIL_USE_TLS'] = True
 
-app.config['MAIL_USERNAME'] = os.environ.get('venasmwaipopo@gmail.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('xprm nxvp igdb esuu')
-
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['MAIL_DEBUG'] = True
+app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
 
 
@@ -767,12 +770,10 @@ def forgot_password():
         email = request.form["email"]
 
         conn = get_db()
-
         user = conn.execute(
             "SELECT * FROM users WHERE email=?",
             (email,)
         ).fetchone()
-
         conn.close()
 
         if not user:
@@ -788,14 +789,13 @@ def forgot_password():
         session["otp"] = otp
         session["reset_email"] = email
 
-        try:
-            msg = Message(
-                subject="VENAS Spare Shop Password Reset OTP",
-                sender=app.config["MAIL_USERNAME"],
-                recipients=[email]
-            )
+        msg = Message(
+            subject="VENAS Spare Shop Password Reset OTP",
+            sender=app.config["MAIL_USERNAME"],
+            recipients=[email]
+        )
 
-            msg.body = f"""
+        msg.body = f"""
 Hello {user['fullname']},
 
 Your OTP code is:
@@ -807,15 +807,16 @@ Use this code to reset your password.
 VENAS Spare Shop System
 """
 
+        try:
+            print("Sending email...")
             mail.send(msg)
-
+            print("Email sent successfully.")
             return redirect("/verify_otp")
 
         except Exception as e:
-            print("EMAIL ERROR:")
+            import traceback
             traceback.print_exc()
-
-            return f"<h2>Email Error</h2><pre>{e}</pre>"
+            return f"EMAIL ERROR: {str(e)}"
 
     return render_template("forgot_password.html")
 #================= VERIFY OTP =================    
